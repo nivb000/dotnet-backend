@@ -3,7 +3,7 @@ using System.Text;
 
 namespace dotnet_backend.Utils
 {
-    public class Password
+    public class Auth
     {
         public static string HashPassword(string password)
         {
@@ -12,5 +12,8 @@ namespace dotnet_backend.Utils
             var hashedPassword = sha.ComputeHash(asByteArray);
             return Convert.ToBase64String(hashedPassword);
         }
+
+        public const string AdminUserClaimName = "IsAdmin";
+        public const string AdminUserPolicyName = "requireAdmin";
     }
 }

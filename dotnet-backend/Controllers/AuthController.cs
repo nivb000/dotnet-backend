@@ -26,9 +26,9 @@ namespace dotnet_backend.Controllers
             {
                 return BadRequest("Email or password is incorrect");
             }
-            var token = await _tokenService.GenerateToken(dbUser.Id.ToString());
-            var cookieOptions = Utils.Cookie.CreateOptions(Request.Host.Host);
-            Response.Cookies.Append("login-token", token, cookieOptions);
+            var token = await _tokenService.GenerateToken(dbUser.Id.ToString(), dbUser.IsAdmin.ToString());
+            //var cookieOptions = Utils.Cookie.CreateOptions(Request.Host.Host);
+            //Response.Cookies.Append("login-token", token, cookieOptions);
             return Ok(token);
         }
 

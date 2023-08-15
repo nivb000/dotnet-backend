@@ -11,5 +11,7 @@ namespace dotnet_backend.Models
         public string Password { get; set; }
         
         public Boolean IsSeller { get; set; }
+
+        public Boolean IsAdmin { get; set; } = false;
     }
 }

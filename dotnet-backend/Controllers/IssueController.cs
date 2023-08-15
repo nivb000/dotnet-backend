@@ -20,13 +20,12 @@ namespace dotnet_backend.Controllers
             return await _context.Issues.ToListAsync();
         }
 
-        [Authorize]
+        [Authorize(Policy = Utils.Auth.AdminUserPolicyName)]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Issue), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetById(int id)
         {
-            Console.WriteLine(Request.Cookies["login-token"]);
             var issue = await _context.Issues.FindAsync(id);
             return issue == null ? NotFound() : Ok(issue);
         }
